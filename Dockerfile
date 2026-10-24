@@ -1,4 +1,4 @@
-FROM ://microsoft.com AS build
+FROM docker.io/amd64/dotnet-sdk:8.0 AS build
 WORKDIR /src
 COPY ["CommunityWeb/CommunityWeb.csproj", "CommunityWeb/"]
 COPY ["DbClassLibrary/DbClassLibrary.csproj", "DbClassLibrary/"]
@@ -7,7 +7,7 @@ COPY . .
 WORKDIR "/src/CommunityWeb"
 RUN dotnet publish "CommunityWeb.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-FROM ://microsoft.com AS final
+FROM docker.io/amd64/dotnet-aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 EXPOSE 8080
