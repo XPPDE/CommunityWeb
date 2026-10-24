@@ -12,6 +12,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     .EnableSensitiveDataLogging()
     .LogTo(Console.WriteLine, LogLevel.Information));
 
+var cs = builder.Configuration.GetConnectionString("DefaultConnection");
+// Жёсткая проверка: если строка пустая или localhost — роняем приложение при старте
+if (string.IsNullOrEmpty(cs) || cs.Contains("127.0.0.1") || cs.Contains("localhost"))
+{
+    throw new Exception($"FATAL: Неверная строка подключения! Получено: [{cs}]");
+}
+
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
