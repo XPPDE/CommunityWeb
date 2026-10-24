@@ -1,5 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace DbClassLibrary.Models;
 
@@ -26,6 +29,9 @@ public partial class User
 
     [StringLength(30)]
     public string? Username { get; set; }
+
+    [StringLength(100)]
+    public string? TelegramChannel { get; set; }
 
     [InverseProperty("Author")]
     public virtual ICollection<Post> Posts { get; set; } = new List<Post>();

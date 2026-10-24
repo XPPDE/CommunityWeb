@@ -437,10 +437,10 @@
             </p>
 
             <div class="profile-badges-row">
-                @* @if (!string.IsNullOrEmpty(Model.Profile.TelegramChannel))
+                @if (!string.IsNullOrEmpty(Model.Profile.TelegramChannel))
                 {
-                    <a href="https://t.me("@", "")" target="_blank" class="tg-link">
-                        <span>✈️</span> @Model.Profile.TelegramChannel
+                    <a href="https://t.me/@Model.Profile.TelegramChannel" target="_blank" class="tg-link">
+                        <span>✈</span> @Model.Profile.TelegramChannel
                     </a>
                 }
 
@@ -450,7 +450,7 @@
                     <a asp-page="/EditProfile" class="tg-link" style="color: #e2e8f0; border-color: #475569; background: transparent;">
                         ➕ Привязать ТГ-канал для автоленты
                     </a>
-                } *@
+                }
 
                 <div class="stats-badge">
                     <span>🛠️</span> Проектов: @Model.Projects.Count
