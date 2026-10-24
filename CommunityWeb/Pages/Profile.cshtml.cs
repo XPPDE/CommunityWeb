@@ -24,11 +24,9 @@ namespace CommunityWeb.Pages
 
             Profile = user;
 
-            // ПРОВЕРКА НА ВЛАДЕЛЬЦА:
             var currentUserIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (currentUserIdClaim != null)
             {
-                // Если ID профиля совпадает с ID залогиненного юзера — это владелец
                 IsOwner = int.Parse(currentUserIdClaim.Value) == id;
             }
 

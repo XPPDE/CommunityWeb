@@ -13,11 +13,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Autorization"; // Куда перенаправлять, если страница требует авторизации, а пользователь не вошел
-        options.ExpireTimeSpan = TimeSpan.FromDays(7); // Сколько помнить пользователя (например, 7 дней)
+        options.LoginPath = "/Autorization";
+        options.ExpireTimeSpan = TimeSpan.FromDays(7);
 
         options.Cookie.HttpOnly = true;
-        options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest; // Кука будет работать и на http, и на https
+        options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
         options.Cookie.SameSite = SameSiteMode.Lax;
     });
 
@@ -37,8 +37,8 @@ app.UseRouting();
 
 app.UseStaticFiles();
 
-app.UseAuthentication(); // Кто ты такой? (Проверка куки)
-app.UseAuthorization();  // Можно ли тебе сюда? (Проверка прав)
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapStaticAssets();
 app.MapRazorPages()

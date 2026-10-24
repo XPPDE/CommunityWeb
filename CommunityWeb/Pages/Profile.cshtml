@@ -405,15 +405,12 @@
         <div class="avatar-wrapper">
             <div class="avatar-glow"></div>
 
-            @* ВНИМАНИЕ: Замените AvatarUrl на точное имя из файла User.cs (например, Avatarurl) *@
             @if (!string.IsNullOrWhiteSpace(Model.Profile.AvatarUrl))
             {
-                <!-- Если путь есть, выводим картинку -->
                 <img src="@Model.Profile.AvatarUrl" alt="" class="avatar-img" />
             }
             else
             {
-                <!-- Если пути нет, выводим заглушку -->
                 <div class="avatar-placeholder">
                     @(!string.IsNullOrWhiteSpace(Model.Profile.Name)
                         ? Model.Profile.Name.Trim().Substring(0, 1).ToUpper()

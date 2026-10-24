@@ -159,7 +159,6 @@
         {
             @foreach (var user in Model.Users)
             {
-                <!-- Каждую карточку мы превратили в ссылку на личный профиль этого друга -->
                 <a asp-page="/Profile" asp-route-id="@user.Id" class="user-card">
 
                     <!-- Аватар -->
@@ -182,13 +181,11 @@
                     <!-- Текстовый блок -->
                     <div>
                         <h3 class="user-name">@user.Name</h3>
-                        <!-- Если у тебя в БД нет колонки Username, то строку ниже можно удалить или заменить на @user.Role -->
                         <p class="user-username">@@@user.Username</p>
                     </div>
 
                     <div>
                         <h5 class="user-name">Роль:</h5>
-                        <!-- Если у тебя в БД нет колонки Username, то строку ниже можно удалить или заменить на @user.Role -->
                         <p class="user-username">@@@user.Role</p>
                     </div>
 

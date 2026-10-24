@@ -144,14 +144,12 @@
             <!-- Поле Логина -->
             <div class="form-group">
                 <label class="form-label" asp-for="Input.Name">Логин</label>
-                <!-- asp-for сам создаст id/name и свяжет инпут с C# -->
                 <input asp-for="Input.Name" class="form-input" placeholder="Введите ваш логин" required />
             </div>
 
             <!-- Поле Пароля -->
             <div class="form-group">
                 <label class="form-label" asp-for="Input.Password">Пароль</label>
-                <!-- asp-for сам поймет, что это пароль, и скроет символы точками -->
                 <input asp-for="Input.Password" type="password" class="form-input" placeholder="••••••••" required />
             </div>
 

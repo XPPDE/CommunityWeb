@@ -101,7 +101,7 @@
 
     /* Стиль самой ссылки/кнопки регистрации */
     .btn-register {
-        color: #10b981; /* Наш фирменный изумрудный цвет */
+        color: #10b981;
         font-weight: 600;
         text-decoration: none;
         margin-left: 6px;
@@ -120,10 +120,9 @@
         margin-top: 24px;
         text-align: center;
         font-size: 14px;
-        color: #94a3b8; /* Спокойный серый цвет для сопутствующего текста */
+        color: #94a3b8;
     }
 
-    /* Плавная подсветка и подчеркивание при наведении */
     .btn-register:hover {
         color: #34d399;
         border-color: #34d399;
@@ -144,20 +143,17 @@
             <!-- Поле Логина -->
             <div class="form-group">
                 <label class="form-label" asp-for="Input.Name">Логин</label>
-                <!-- asp-for сам создаст id/name и свяжет инпут с C# -->
                 <input asp-for="Input.Name" class="form-input" placeholder="Введите ваш логин" required />
             </div>
 
             <!-- Поле Пароля -->
             <div class="form-group">
                 <label class="form-label" asp-for="Input.Password">Пароль</label>
-                <!-- asp-for сам поймет, что это пароль, и скроет символы точками -->
                 <input asp-for="Input.Password" type="password" class="form-input" placeholder="••••••••" required />
             </div>
             <!-- Поле Пароля -->
             <div class="form-group">
                 <label class="form-label" asp-for="Input.RepeatPassword">Повторите пароль</label>
-                <!-- asp-for сам поймет, что это пароль, и скроет символы точками -->
                 <input asp-for="Input.RepeatPassword" type="password" class="form-input" placeholder="••••••••" required />
             </div>
 

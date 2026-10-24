@@ -22,8 +22,7 @@ namespace CommunityWeb.Pages
                 return Page();
             }
 
-            // Автоматически подвязываем ID текущего авторизованного пользователя из куки!
-            // (Мы зашивали ClaimTypes.NameIdentifier при авторизации)
+
             var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
             if (userIdClaim != null)
             {

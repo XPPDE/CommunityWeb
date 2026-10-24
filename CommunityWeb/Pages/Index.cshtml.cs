@@ -20,7 +20,6 @@ namespace CommunityWeb.Pages
                 .OrderByDescending(p => p.Id)
                 .ToListAsync();
 
-            // Вытаскиваем ID авторизованного пользователя
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (userIdClaim != null)
             {
