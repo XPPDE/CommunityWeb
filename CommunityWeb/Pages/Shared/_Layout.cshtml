@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - IT Наше Коммьюнити</title>
+
+    <!-- Подключаем качественный шрифт Inter -->
+    <link href="https://googleapis.com" rel="stylesheet">
+
+    <style>
+            /* Глобальные стили для всего сайта */
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: 'Inter', sans-serif;
+                background-color: #0f172a; /* Глубокий темный фон */
+                color: #cbd5e1; /* Светло-серый приятный текст */
+                min-height: screen;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* Стильная шапка сайта */
+            .site-header {
+                background-color: #1e293b; /* Чуть светлее фона */
+                border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+                padding: 16px 0;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+            }
+
+            .header-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .site-logo {
+                font-size: 20px;
+                font-weight: 800;
+                color: #10b981; /* Неоново-зеленый акцент */
+                text-decoration: none;
+                letter-spacing: 1px;
+                transition: color 0.2s ease;
+            }
+
+                .site-logo:hover {
+                    color: #34d399;
+                }
+
+            /* Навигационное меню */
+            .site-nav {
+                display: flex;
+                gap: 24px;
+            }
+
+            .nav-link {
+                color: #94a3b8;
+                text-decoration: none;
+                font-size: 15px;
+                font-weight: 500;
+                transition: color 0.2s ease;
+            }
+
+                .nav-link:hover {
+                    color: #10b981; /* Подсветка при наведении */
+                }
+
+            /* Контентная область */
+            .main-content {
+                flex-grow: 1;
+                padding: 40px 0;
+                width: 100%;
+            }
+
+            /* Аккуратный подвал */
+            .site-footer {
+                background-color: #0f172a;
+                border-top: 1px solid rgba(148, 163, 184, 0.1);
+                padding: 20px 0;
+                text-align: center;
+                font-size: 14px;
+                color: #64748b;
+            }
+
+            /* Адаптивность для мобилок */
+            @@media (max-width: 600px) {
+                .header-container {
+                    flex-direction: column;
+                    gap: 16px;
+                    text-align: center;
+                }
+
+                .site-nav {
+                    gap: 16px;
+                }
+            }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка (Header) -->
+    <header class="site-header">
+        <div class="header-container">
+            <a asp-page="/Index" class="site-logo">COMMUNITY HUB</a>
+            <nav class="site-nav">
+                <a asp-page="/Index" class="nav-link">Проекты</a>
+                <a asp-page="/Blog" class="nav-link">Лента постов</a>
+                <a asp-page="/Users" class="nav-link">Участники</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основное содержимое страницы -->
+    <main class="main-content">
+        @RenderBody()
+    </main>
+
+    <!-- Подвал (Footer) -->
+    <footer class="site-footer">
+        <div class="header-container" style="justify-content: center;">
+            <p>&copy; @DateTime.Now.Year — Создано для нашего круга друзей</p>
+        </div>
+    </footer>
+
+</body>
+</html>

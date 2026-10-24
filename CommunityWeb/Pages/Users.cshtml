@@ -1,0 +1,203 @@
+﻿@page
+@model CommunityWeb.Pages.UsersModel
+@{
+    ViewData["Title"] = "Участники";
+}
+
+<style>
+    /* Сетка участников */
+    .projects-section {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .projects-header {
+        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        padding-bottom: 16px;
+        margin-bottom: 32px;
+    }
+
+    .section-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #ffffff;
+    }
+
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+    }
+
+    /* Карточки участников (отцентрированные) */
+    .user-card {
+        background-color: #1e293b;
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        border-radius: 24px;
+        padding: 32px 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Центрируем всё содержимое */
+        text-align: center;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, border-color 0.3s ease;
+        text-decoration: none; /* Чтобы карточка-ссылка не подчёркивалась */
+        color: inherit;
+    }
+
+        .user-card:hover {
+            transform: translateY(-4px);
+            border-color: #334155;
+        }
+
+    /* Контейнер аватарки */
+    .avatar-wrapper {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .avatar-glow {
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(90deg, #10b981, #06b6d4);
+        border-radius: 50%;
+        z-index: 1;
+        opacity: 0.3;
+        filter: blur(6px);
+        transition: opacity 0.3s ease;
+    }
+
+    .user-card:hover .avatar-glow {
+        opacity: 0.6;
+    }
+
+    .avatar-img {
+        position: relative;
+        z-index: 2;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #1e293b;
+    }
+
+    .avatar-placeholder {
+        position: relative;
+        z-index: 2;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        background-color: #334155;
+        border: 3px solid #1e293b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 38px;
+        font-weight: 700;
+        color: #e2e8f0;
+        user-select: none;
+    }
+    /* Скобка возвращена на место! */
+
+    .user-name {
+        font-size: 20px;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 4px;
+        transition: color 0.2s;
+    }
+
+    .user-card:hover .user-name {
+        color: #10b981;
+    }
+
+    .user-username {
+        color: #64748b;
+        font-size: 14px;
+        margin-bottom: 16px;
+    }
+
+    .user-bio {
+        color: #94a3b8;
+        font-size: 14px;
+        line-height: 1.5;
+        font-weight: 300;
+        border-top: 1px solid rgba(51, 65, 85, 0.4);
+        padding-top: 16px;
+        width: 100%;
+        white-space: pre-line;
+    }
+
+    .no-data {
+        grid-column: 1 / -1;
+        background-color: rgba(30, 41, 59, 0.4);
+        border: 1px dashed #334155;
+        border-radius: 16px;
+        padding: 48px;
+        text-align: center;
+        color: #94a3b8;
+    }
+</style>
+
+<div class="projects-section">
+    <div class="projects-header">
+        <h2 class="section-title">👥 Участники сообщества</h2>
+    </div>
+
+    <div class="projects-grid">
+        @if (Model.Users == null || !Model.Users.Any())
+        {
+            <div class="no-data">
+                База данных пока пуста. Загляните позже или зарегистрируйтесь первым!
+            </div>
+        }
+        else
+        {
+            @foreach (var user in Model.Users)
+            {
+                <!-- Каждую карточку мы превратили в ссылку на личный профиль этого друга -->
+                <a asp-page="/Profile" asp-route-id="@user.Id" class="user-card">
+
+                    <!-- Аватар -->
+                    <div class="avatar-wrapper">
+                        <div class="avatar-glow"></div>
+                        @if (!string.IsNullOrWhiteSpace(user.AvatarUrl))
+                        {
+                            <img src="@user.AvatarUrl" alt="" class="avatar-img" />
+                        }
+                        else
+                        {
+                            <div class="avatar-placeholder">
+                                @(!string.IsNullOrWhiteSpace(user.Name)
+                                    ? user.Name.Trim().Substring(0, 1).ToUpper()
+                                    : "U")
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Текстовый блок -->
+                    <div>
+                        <h3 class="user-name">@user.Name</h3>
+                        <!-- Если у тебя в БД нет колонки Username, то строку ниже можно удалить или заменить на @user.Role -->
+                        <p class="user-username">@@@user.Username</p>
+                    </div>
+
+                    <div>
+                        <h5 class="user-name">Роль:</h5>
+                        <!-- Если у тебя в БД нет колонки Username, то строку ниже можно удалить или заменить на @user.Role -->
+                        <p class="user-username">@@@user.Role</p>
+                    </div>
+
+                    <!-- О себе -->
+                    <div class="user-bio">
+                        @(string.IsNullOrWhiteSpace(user.Bio) ? "Разработчик из Межгалактической Империи Колючек" : user.Bio)
+                    </div>
+                </a>
+            }
+        }
+    </div>
+</div>

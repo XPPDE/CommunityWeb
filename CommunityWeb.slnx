@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="CommunityWeb/CommunityWeb.csproj" />
+  <Project Path="DbClassLibrary/DbClassLibrary.csproj" />
+</Solution>
