@@ -52,6 +52,7 @@ namespace CommunityWeb.Pages
             // 4. Обновляем текстовые поля профиля
             userInDb.Bio = InputModel.Bio;
             userInDb.TelegramChannel = InputModel.TelegramChannel;
+            userInDb.AvatarUrl = InputModel.AvatarUrl;
 
             // 5. Коммитим изменения в глобальную базу данных Render
             await context.SaveChangesAsync();
