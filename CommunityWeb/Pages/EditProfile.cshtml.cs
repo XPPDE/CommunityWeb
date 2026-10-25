@@ -28,7 +28,7 @@ namespace CommunityWeb.Pages
             // Если у вас колонка в Postgres называется TelegramChannel, укажите её:
             InputModel.TelegramChannel = user.TelegramChannel;
             InputModel.AvatarUrl = user.AvatarUrl;
-            InputModel.Name = user.Username;
+            InputModel.Name = user.Name;
 
             return Page();
         }
@@ -53,6 +53,7 @@ namespace CommunityWeb.Pages
             userInDb.Bio = InputModel.Bio;
             userInDb.TelegramChannel = InputModel.TelegramChannel;
             userInDb.AvatarUrl = InputModel.AvatarUrl;
+            userInDb.Name = InputModel.Name;
 
             // 5. Коммитим изменения в глобальную базу данных Render
             await context.SaveChangesAsync();
