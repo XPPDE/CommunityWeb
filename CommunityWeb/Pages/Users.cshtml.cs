@@ -10,7 +10,9 @@ namespace CommunityWeb.Pages
 
         public async Task OnGet()
         {
-            Users = await context.Users.ToListAsync();
+            Users = await context.Users
+                .OrderByDescending(x => x.Id)
+                .ToListAsync();
         }
     }
 }
