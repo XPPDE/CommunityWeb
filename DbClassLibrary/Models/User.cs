@@ -13,7 +13,7 @@ public partial class User
     public int Id { get; set; }
 
     [StringLength(30)]
-    public string Name { get; set; } = null!;
+    public string Name { get; set; } = "User";
 
     [StringLength(100)]
     public string PasswordHash { get; set; } = null!;
@@ -28,7 +28,7 @@ public partial class User
     public string Role { get; set; } = null!;
 
     [StringLength(30)]
-    public string? Username { get; set; }
+    public string Username { get; set; } = null!;
 
     [StringLength(100)]
     public string? TelegramChannel { get; set; }
