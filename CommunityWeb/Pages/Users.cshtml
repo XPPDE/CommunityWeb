@@ -166,7 +166,23 @@
                         <div class="avatar-glow"></div>
                         @if (!string.IsNullOrWhiteSpace(user.AvatarUrl))
                         {
-                            <img src="@user.AvatarUrl" alt="" class="avatar-img" />
+                            FileInfo fileInfo = new FileInfo(user.AvatarUrl);
+                            if (fileInfo.Extension == ".png")
+                            {
+                                <img src="@user.AvatarUrl" alt="" class="avatar-img" />
+                            }
+                            else if (fileInfo.Extension == ".mp4")
+                            {
+                                <video src="@user.AvatarUrl" autoplay loop muted alt="" class="avatar-img" />
+                            }
+                            else
+                            {
+                                <div class="avatar-placeholder">
+                                    @(!string.IsNullOrWhiteSpace(user.Username)
+                                        ? user.Username.Trim().Substring(0, 1).ToUpper()
+                                        : "U")
+                                </div>
+                            }
                         }
                         else
                         {

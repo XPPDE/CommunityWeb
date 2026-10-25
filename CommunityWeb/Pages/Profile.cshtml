@@ -407,7 +407,25 @@
 
             @if (!string.IsNullOrWhiteSpace(Model.Profile.AvatarUrl))
             {
-                <img src="@Model.Profile.AvatarUrl" alt="" class="avatar-img" />
+                FileInfo fileInfo = new FileInfo(Model.Profile.AvatarUrl);
+                if (fileInfo.Extension == ".png")
+                {
+					<img src="@Model.Profile.AvatarUrl" alt="" class="avatar-img" />
+                }
+                else if (fileInfo.Extension == ".mp4")
+                {
+                    <video src="@Model.Profile.AvatarUrl" autoplay loop muted alt="" class="avatar-img"/>
+                }
+                else
+                {
+                    <div class="avatar-placeholder">
+                        @(!string.IsNullOrWhiteSpace(Model.Profile.Username)
+                            ? Model.Profile.Username.Trim().Substring(0, 1).ToUpper()
+                            : "U")
+                    </div>
+                }
+
+                
             }
             else
             {
