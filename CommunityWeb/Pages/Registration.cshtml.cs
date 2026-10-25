@@ -19,7 +19,7 @@ namespace CommunityWeb.Pages
         {
             if (!ModelState.IsValid) return Page();
 
-            var user = await context.Users.FirstOrDefaultAsync(u => u.Username == Input.Name);
+            var user = await context.Users.FirstOrDefaultAsync(u => u.Username == Input.Username);
 
             if (user != null)
             {
@@ -36,14 +36,14 @@ namespace CommunityWeb.Pages
             var hasher = new PasswordHasher<User>();
             string strongPasswordHash = hasher.HashPassword(null!, Input.Password);
 
-            NewUser.Username = Input.Name;
+            NewUser.Username = Input.Username.ToLower();
             NewUser.PasswordHash = strongPasswordHash;
             NewUser.Role = "Member";
 
             context.Users.Add(NewUser);
             await context.SaveChangesAsync();
 
-            user = await context.Users.FirstOrDefaultAsync(u => u.Username == Input.Name);
+            user = await context.Users.FirstOrDefaultAsync(u => u.Username == Input.Username);
 
             var claims = new List<Claim>
             {
@@ -65,7 +65,7 @@ namespace CommunityWeb.Pages
 
     public class RegisterInputModel
     {
-        public string Name { get; set; } = string.Empty;
+        public string Username { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public string RepeatPassword { get; set; } = string.Empty;
     }

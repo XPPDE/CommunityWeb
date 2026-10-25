@@ -154,7 +154,7 @@
             <!-- Описание проекта -->
             <div class="form-group">
                 <label class="form-label" asp-for="NewProject.Description">Описание</label>
-                <textarea asp-for="NewProject.Description" class="form-input" placeholder="Расскажите, какой стек использовали, какие фичи реализовали и зачем создали этот проект..." required></textarea>
+                <textarea maxlength="3000" asp-for="NewProject.Description" class="form-input" placeholder="Расскажите, какой стек использовали, какие фичи реализовали и зачем создали этот проект..." required></textarea>
             </div>
 
             <!-- Ссылка на живой сайт / демо -->

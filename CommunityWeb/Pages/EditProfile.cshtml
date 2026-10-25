@@ -183,7 +183,7 @@
             <div class="form-group">
                 <label class="form-label" asp-for="InputModel.Bio">Рассказ о себе (Bio)</label>
                 <!-- Текст с переносами строк white-space обработается как надо -->
-                <textarea asp-for="InputModel.Bio" class="form-input" placeholder="Расскажите о своем стеке, пет-проектах или просто напишите пару ламповых слов..."></textarea>
+                <textarea maxlength="3000" asp-for="InputModel.Bio" class="form-input" placeholder="Расскажите о своем стеке, пет-проектах или просто напишите пару ламповых слов..."></textarea>
             </div>
 
             <!-- Юзернейм Телеграм-канала -->
