@@ -418,11 +418,7 @@
                 }
                 else
                 {
-                    <div class="avatar-placeholder">
-                        @(!string.IsNullOrWhiteSpace(Model.Profile.Username)
-                            ? Model.Profile.Username.Trim().Substring(0, 1).ToUpper()
-                            : "U")
-                    </div>
+                    <img src="@Model.Profile.AvatarUrl" alt="" class="avatar-img" />
                 }
 
                 
