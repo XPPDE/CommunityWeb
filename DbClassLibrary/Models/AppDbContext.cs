@@ -45,13 +45,13 @@ public partial class AppDbContext : DbContext
             entity.HasOne(d => d.Author).WithMany(p => p.Projects).HasConstraintName("AuthorId");
         });
 
-        modelBuilder.Entity<User>(entity =>
+        modelBuilder.Entity<User>((Action<Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<User>>)(entity =>
         {
             entity.HasKey(e => e.Id).HasName("User_pkey");
 
-            entity.Property(e => e.Name).HasDefaultValueSql("'User'::character varying");
+            entity.Property((System.Linq.Expressions.Expression<Func<User, string>>)(e => (string)e.Username)).HasDefaultValueSql("'User'::character varying");
             entity.Property(e => e.Role).HasDefaultValueSql("'Member'::character varying");
-        });
+        }));
 
         OnModelCreatingPartial(modelBuilder);
     }

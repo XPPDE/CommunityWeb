@@ -172,7 +172,7 @@
                         {
                             <div class="avatar-placeholder">
                                 @(!string.IsNullOrWhiteSpace(user.Name)
-                                    ? user.Name.Trim().Substring(0, 1).ToUpper()
+                                    ? user.Username.Trim().Substring(0, 1).ToUpper()
                                     : "U")
                             </div>
                         }

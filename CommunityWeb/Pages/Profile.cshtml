@@ -2,7 +2,7 @@
 
 @model CommunityWeb.Pages.ProfileModel
 @{
-    ViewData["Title"] = $"Профиль {Model.Profile.Name}";
+    ViewData["Title"] = $"Профиль {Model.Profile.Username}";
 }
 
 <style>
@@ -412,8 +412,8 @@
             else
             {
                 <div class="avatar-placeholder">
-                    @(!string.IsNullOrWhiteSpace(Model.Profile.Name)
-                        ? Model.Profile.Name.Trim().Substring(0, 1).ToUpper()
+                    @(!string.IsNullOrWhiteSpace(Model.Profile.Username)
+                        ? Model.Profile.Username.Trim().Substring(0, 1).ToUpper()
                         : "U")
                 </div>
             }
@@ -421,7 +421,7 @@
 
         <div class="profile-info">
             <div class="profile-header-row">
-                <h1 class="profile-name">@Model.Profile.Name</h1>
+                <h1 class="profile-name">@Model.Profile.Username</h1>
                 <span class="profile-badge">@Model.Profile.Role</span>
 
                 <!-- ФУНКЦИОНАЛ ТОЛЬКО ДЛЯ ВЛАДЕЛЬЦА ПРОФИЛЯ -->

@@ -19,7 +19,7 @@ namespace CommunityWeb.Pages
         {
             if (!ModelState.IsValid) return Page();
 
-            var user = await context.Users.FirstOrDefaultAsync(u => u.Name == Input.Name);
+            var user = await context.Users.FirstOrDefaultAsync(u => u.Username == Input.Username);
 
             if (user == null)
             {
@@ -41,7 +41,7 @@ namespace CommunityWeb.Pages
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.Name),
+                new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.Role, user.Role)
             };
 
@@ -58,7 +58,7 @@ namespace CommunityWeb.Pages
 
     public class LoginInputModel
     {
-        public string Name { get; set; } = string.Empty;
+        public string Username { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
     }
 }

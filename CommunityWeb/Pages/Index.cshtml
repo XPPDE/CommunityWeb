@@ -254,7 +254,7 @@
                             <span style="color: #64748b;">
                                 Автор:
                                 <a asp-page="/Profile" asp-route-id="@project.AuthorId" class="author-link">
-                                    @project.Author?.Name
+                                    @project.Author?.Username
                                 </a>
                             </span>
                             @if (!string.IsNullOrEmpty(project.LiveUrl))

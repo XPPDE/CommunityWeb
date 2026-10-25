@@ -28,7 +28,7 @@ namespace CommunityWeb.Pages
             // Если у вас колонка в Postgres называется TelegramChannel, укажите её:
             InputModel.TelegramChannel = user.TelegramChannel;
             InputModel.AvatarUrl = user.AvatarUrl;
-            InputModel.Name = user.Name;
+            InputModel.Name = user.Username;
 
             return Page();
         }
