@@ -446,7 +446,16 @@
             </div>
             <p class="profile-username">@@@Model.Profile.Username</p>
 
+            @if (Model.Profile.Id == 9)
+            {
+                <p>
+                    💩💩💩💩💩💩💩
+                </p>
+                <video class="avatar-img" src="https://media.tenor.com/bxKh6CrdkFEAAAPo/ai-toilet.mp4" loop autoplay muted />
+            }
+
             <p class="profile-bio">
+                
                 @(string.IsNullOrEmpty(Model.Profile.Bio) ? "Этот разработчик еще не заполнил блок 'о себе'." : Model.Profile.Bio)
             </p>
 
