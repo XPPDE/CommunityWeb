@@ -61,7 +61,6 @@ namespace CommunityWeb.Pages
         }
     }
 
-    // Класс-модель для полей ввода формы настроек
     public class EditInputModel
     {
         public string? Bio { get; set; }
