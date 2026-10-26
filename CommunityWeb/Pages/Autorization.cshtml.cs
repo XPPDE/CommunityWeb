@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 
 namespace CommunityWeb.Pages
@@ -58,6 +59,9 @@ namespace CommunityWeb.Pages
 
     public class LoginInputModel
     {
+        [Required(ErrorMessage = "Введите логин")]
+        [StringLength(30, MinimumLength = 3, ErrorMessage = "Логин должен быть от 3 до 30 символов")]
+        [RegularExpression(@"^[a-z0-9_]+$", ErrorMessage = "Логин может содержать только строчные латинские буквы, цифры и подчеркивание")]
         public string Username { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
     }

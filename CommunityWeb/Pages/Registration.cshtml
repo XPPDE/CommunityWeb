@@ -143,18 +143,18 @@
             <!-- Поле Логина -->
             <div class="form-group">
                 <label class="form-label" asp-for="Input.Username">Логин</label>
-                <input asp-for="Input.Username" class="form-input" placeholder="Введите ваш логин" required />
+                <input asp-for="Input.Username" maxlength="30" pattern="[a-z0-9_]+" title="Только строчные латинские буквы, цифры и подчеркивание" placeholder="xppde" class="form-input" placeholder="Введите ваш логин" required />
             </div>
 
             <!-- Поле Пароля -->
             <div class="form-group">
                 <label class="form-label" asp-for="Input.Password">Пароль</label>
-                <input asp-for="Input.Password" type="password" class="form-input" placeholder="••••••••" required />
+                <input asp-for="Input.Password" maxlength="30" type="password" class="form-input" placeholder="••••••••" required />
             </div>
             <!-- Поле Пароля -->
             <div class="form-group">
                 <label class="form-label" asp-for="Input.RepeatPassword">Повторите пароль</label>
-                <input asp-for="Input.RepeatPassword" type="password" class="form-input" placeholder="••••••••" required />
+                <input asp-for="Input.RepeatPassword" maxlength="30" type="password" class="form-input" placeholder="••••••••" required />
             </div>
 
             <!-- Кнопка отправки формы -->
