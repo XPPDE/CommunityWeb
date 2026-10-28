@@ -617,3 +617,20 @@ textarea.form-input {
 .EasyMDEContainer .CodeMirror-cursor {
     border-left: 2px solid #10b981; /* Твой неоново-зелёный акцент */
 }
+
+/* Цвет выделения текста в EasyMDE */
+.EasyMDEContainer .CodeMirror-selected {
+    background-color: rgba(16, 185, 129, 0.3) !important; /* Неоново-зеленый с прозрачностью */
+}
+
+/* Цвет выделения, когда редактор не в фокусе (чтобы не сливалось) */
+.EasyMDEContainer .CodeMirror-focused .CodeMirror-selected {
+    background-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+/* Иногда CodeMirror использует этот класс для выделения в некоторых темах */
+.EasyMDEContainer .CodeMirror-line::selection,
+.EasyMDEContainer .CodeMirror-line > span::selection,
+.EasyMDEContainer .CodeMirror-line > span > span::selection {
+    background: rgba(16, 185, 129, 0.3);
+}
