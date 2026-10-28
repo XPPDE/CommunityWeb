@@ -612,3 +612,8 @@ textarea.form-input {
     background-color: #1e293b;
     border-radius: 0 0 8px 8px;
 }
+
+/* Цвет курсора в EasyMDE */
+.EasyMDEContainer .CodeMirror-cursor {
+    border-left: 2px solid #10b981; /* Твой неоново-зелёный акцент */
+}
