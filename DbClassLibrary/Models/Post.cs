@@ -26,4 +26,7 @@ public partial class Post
     [ForeignKey("AuthorId")]
     [InverseProperty("Posts")]
     public virtual User? Author { get; set; }
+
+    [InverseProperty("Post")]
+    public virtual ICollection<PostComment> PostComments { get; set; } = new List<PostComment>();
 }

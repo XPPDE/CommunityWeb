@@ -1,0 +1,77 @@
+﻿@page "{id:int}"
+
+@model CommunityWeb.Pages.PostDetailsModel
+@{
+	ViewData["Title"] = $"Пост: {Model.Post.Title}";
+}
+
+<div class="post-card">
+        <div>
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <h3 class="post-title">@Model.Post.Title</h3>
+
+                <!-- ВЛАДЕЛЕЦ МОЖЕТ УДАЛЯТЬ ИЛИ РЕДАКТИРОВАТЬ СВОИ ПРОЕКТЫ -->
+                @if (Model.IsOwner)
+                {
+                    <div style="display: flex; gap: 8px;">
+                        @* <a href="#" style="text-decoration: none; font-size: 14px;">⚙️</a>
+                                            <a href="#" style="text-decoration: none; font-size: 14px;">❌</a> *@
+                    </div>
+                }
+            </div>
+            <p class="post-desc">@Model.Post.Content</p>
+        </div>
+
+        <div class="post-footer">
+            <span>@Model.Post.CreatedAt.ToString()</span>
+        </div>
+</div>
+
+<div style="margin-left: 1%; margin-right: 1%; margin-top: 15px; margin-block: 20px">
+    <div class="comments-area">
+        @foreach (var comment in Model.PostComments)
+        {
+
+            <div class="post-card">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <h3 class="post-title">@comment.User.Name</h3>
+
+                            <!-- ВЛАДЕЛЕЦ МОЖЕТ УДАЛЯТЬ ИЛИ РЕДАКТИРОВАТЬ СВОИ КОММЕНТАРИИ -->
+                            @if (Model.IsOwner)
+                            {
+                                <div style="display: flex; gap: 8px;">
+                                    @* <a href="#" style="text-decoration: none; font-size: 14px;">⚙️</a>
+                                                <a href="#" style="text-decoration: none; font-size: 14px;">❌</a> *@
+                                </div>
+                            }
+                        </div>
+                        <p class="post-desc">@comment.Content</p>
+                    </div>
+
+                    <div class="post-footer">
+                        <span>@comment.CreatedAt.ToString()</span>
+                    </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="post-card">
+    <h3 class="post-title"> Поделитесь своими мыслями с ребятами из коммьюнити</h3>
+
+    <form method="post">
+
+        <!-- текст комментария -->
+        <div class="form-group">
+            <textarea maxlength="3000" asp-for="NewComment.Content" class="form-input" placeholder="Расскажите что-нибудь" required></textarea>
+        </div>
+
+        <!-- Кнопки управления -->
+        <div class="form-actions">
+            <button type="submit" class="btn-submit">Опубликовать комментарий</button>
+        </div>
+
+    </form>
+</div>
+

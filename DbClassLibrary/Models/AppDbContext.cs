@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace DbClassLibrary.Models;
 
@@ -14,6 +16,8 @@ public partial class AppDbContext : DbContext
     }
 
     public virtual DbSet<Post> Posts { get; set; }
+
+    public virtual DbSet<PostComment> PostComments { get; set; }
 
     public virtual DbSet<Project> Projects { get; set; }
 
@@ -34,6 +38,22 @@ public partial class AppDbContext : DbContext
             entity.HasOne(d => d.Author).WithMany(p => p.Posts).HasConstraintName("AuthorId");
         });
 
+        modelBuilder.Entity<PostComment>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("Id");
+
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
+            entity.Property(e => e.CreatedAt).HasDefaultValueSql("now()");
+
+            entity.HasOne(d => d.Post).WithMany(p => p.PostComments)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Post");
+
+            entity.HasOne(d => d.User).WithMany(p => p.PostComments)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("User");
+        });
+
         modelBuilder.Entity<Project>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("Project_pkey");
@@ -45,13 +65,14 @@ public partial class AppDbContext : DbContext
             entity.HasOne(d => d.Author).WithMany(p => p.Projects).HasConstraintName("AuthorId");
         });
 
-        modelBuilder.Entity<User>((Action<Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<User>>)(entity =>
+        modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("User_pkey");
 
-            entity.Property((System.Linq.Expressions.Expression<Func<User, string>>)(e => (string)e.Username)).HasDefaultValueSql("'User'::character varying");
+            entity.Property(e => e.Name).HasDefaultValueSql("'User'::character varying");
             entity.Property(e => e.Role).HasDefaultValueSql("'Member'::character varying");
-        }));
+            entity.Property(e => e.Username).HasDefaultValueSql("'user'::character varying");
+        });
 
         OnModelCreatingPartial(modelBuilder);
     }

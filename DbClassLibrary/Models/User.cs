@@ -7,13 +7,14 @@ using Microsoft.EntityFrameworkCore;
 namespace DbClassLibrary.Models;
 
 [Table("User")]
+[Index("Username", Name = "User_Username_key", IsUnique = true)]
 public partial class User
 {
     [Key]
     public int Id { get; set; }
 
     [StringLength(30)]
-    public string Name { get; set; } = "User";
+    public string Name { get; set; } = null!;
 
     [StringLength(100)]
     public string PasswordHash { get; set; } = null!;
@@ -32,6 +33,9 @@ public partial class User
 
     [StringLength(100)]
     public string? TelegramChannel { get; set; }
+
+    [InverseProperty("User")]
+    public virtual ICollection<PostComment> PostComments { get; set; } = new List<PostComment>();
 
     [InverseProperty("Author")]
     public virtual ICollection<Post> Posts { get; set; } = new List<Post>();
