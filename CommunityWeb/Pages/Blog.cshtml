@@ -150,23 +150,26 @@
                 @foreach (var post in Model.Posts)
                 {
                     <div class="post-card">
-                        <div>
-                            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                                <h3 class="post-title">@post.Title</h3>
+                        <a asp-page="/PostDetails" asp-route-id="@post.Id" style="text-decoration: none;">
+
+                            <div>
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                    <h3 class="post-title">@post.Title</h3>
+                                </div>
+                                <p class="post-desc">@post.Content</p>
                             </div>
-                            <p class="post-desc">@post.Content</p>
-                        </div>
 
-                        <div class="post-footer">
-                            <span>@post.CreatedAt.ToString()</span>
+                            <div class="post-footer">
+                                <span>@post.CreatedAt.ToString()</span>
 
-                            <span style="color: #64748b;">
-                                Автор:
-                                <a asp-page="/Profile" asp-route-id="@post.AuthorId" class="author-link">
-                                    @post.Author?.Username
-                                </a>
-                            </span>
-                        </div>
+                                <span style="color: #64748b;">
+                                    Автор:
+                                    <a asp-page="/Profile" asp-route-id="@post.AuthorId" class="author-link">
+                                        @post.Author?.Username
+                                    </a>
+                                </span>
+                            </div>
+                        </a>
                     </div>
                 }
             }
