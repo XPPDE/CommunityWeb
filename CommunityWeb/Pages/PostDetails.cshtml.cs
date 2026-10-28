@@ -1,4 +1,5 @@
 using DbClassLibrary.Models;
+using Markdig;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,14 @@ namespace CommunityWeb.Pages
             var post = await context.Posts.FirstOrDefaultAsync(p => p.Id == Id);
             if (post == null) return NotFound();
 
-            Post = post;
+            var pipeline = new MarkdownPipelineBuilder()
+                .UseAdvancedExtensions() // Поддерживает таблицы, списки и т.д.
+                .DisableHtml()           // Запрещаем сырой HTML (безопасность!)
+                .Build();
+
+            post.Content = Markdown.ToHtml(post.Content, pipeline);
+
+            Post= post;
 
             var currentUserIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (currentUserIdClaim != null)
@@ -55,7 +63,7 @@ namespace CommunityWeb.Pages
             }
 
             return RedirectToPage(new { id = Id });
-                 
+
         }
     }
 }

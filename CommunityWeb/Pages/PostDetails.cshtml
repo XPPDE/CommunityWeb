@@ -19,7 +19,10 @@
                     </div>
                 }
             </div>
-            <p class="post-desc">@Model.Post.Content</p>
+		<div class="post-content">
+			@Html.Raw(@Model.Post.Content)
+        </div>
+            
         </div>
 
         <div class="post-footer">

@@ -23,6 +23,10 @@
                 <textarea maxlength="3000" asp-for="NewPost.Content" class="form-input" placeholder="Расскажите что-нибудь" required></textarea>
             </div>
 
+            <small class="field-hint">
+                Для вставки картинки используйте: <code>![Описание](URL_картинки)</code>
+            </small>
+
             <!-- Кнопки управления -->
             <div class="form-actions">
                 <a asp-page="/Index" class="btn-cancel">Отмена</a>
