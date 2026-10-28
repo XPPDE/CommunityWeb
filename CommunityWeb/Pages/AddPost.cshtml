@@ -20,12 +20,8 @@
             <!-- Описание проекта -->
             <div class="form-group">
                 <label class="form-label" asp-for="NewPost.Content">Описание</label>
-                <textarea maxlength="3000" asp-for="NewPost.Content" class="form-input" placeholder="Расскажите что-нибудь" required></textarea>
+                <textarea maxlength="3000" id="post-editor" asp-for="NewPost.Content" class="form-input" placeholder="Расскажите что-нибудь" required></textarea>
             </div>
-
-            <small class="field-hint">
-                Для вставки картинки используйте: <code>![Описание](URL_картинки)</code>
-            </small>
 
             <!-- Кнопки управления -->
             <div class="form-actions">
@@ -34,5 +30,21 @@
             </div>
 
         </form>
+
+        @section Scripts {
+            <script>
+                        const easyMDE = new EasyMDE({
+                            element: document.getElementById('post-editor'),
+                            spellChecker: false,
+                            theme: "dark", // <--- ВОТ ЭТА СТРОКА
+
+                            placeholder: "Напишите что-нибудь... Вставьте ссылку на картинку, и она появится в предпросмотре.",
+
+
+                            // Настраиваем панель инструментов (опционально)
+                            toolbar: ["bold", "italic", "heading", "|", "quote", "unordered-list", "ordered-list", "|", "link", "image", "|", "preview", "side-by-side", "fullscreen"]
+                        });
+            </script>
+        }
     </div>
 </div>

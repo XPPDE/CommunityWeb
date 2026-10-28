@@ -576,3 +576,39 @@ textarea.form-input {
     border-radius: 8px;
     overflow-x: auto;
 }
+
+/* Переопределяем стили EasyMDE под наш дизайн */
+.EasyMDEContainer .CodeMirror {
+    background-color: #0f172a; /* Твой темный фон */
+    color: #cbd5e1; /* Твой цвет текста */
+    border: 1px solid rgba(51, 65, 85, 0.6); /* Рамка как у карточек */
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+}
+
+/* Панель инструментов */
+.EasyMDEContainer .editor-toolbar {
+    background-color: #1e293b;
+    border: 1px solid rgba(51, 65, 85, 0.6);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    opacity: 1; /* Убираем прозрачность */
+}
+
+    /* Иконки на панели (чтобы были светлыми) */
+    .EasyMDEContainer .editor-toolbar button {
+        color: #94a3b8 !important;
+    }
+
+        .EasyMDEContainer .editor-toolbar button:hover {
+            background-color: #334155;
+            color: #10b981 !important;
+        }
+
+/* Статус-бар внизу */
+.EasyMDEContainer .editor-statusbar {
+    color: #64748b;
+    background-color: #1e293b;
+    border-radius: 0 0 8px 8px;
+}

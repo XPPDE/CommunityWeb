@@ -9,6 +9,8 @@
     <!-- Подключаем качественный шрифт Inter -->
     <link href="https://googleapis.com" rel="stylesheet">
     <link href="~/css/site.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+
 
     <style>
             /* Глобальные стили для всего сайта */
@@ -158,6 +160,12 @@
             <p>&copy; @DateTime.Now.Year — Создано для нашего круга друзей</p>
         </div>
     </footer>
+
+     <!-- ВАЖНО: Сначала подключаем EasyMDE JS, потом рендерим скрипты страниц -->
+    <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+
 
 </body>
 </html>
