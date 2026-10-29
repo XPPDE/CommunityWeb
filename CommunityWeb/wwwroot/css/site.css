@@ -1,36 +1,579 @@
+/* ============================================================
+   1. ПЕРЕМЕННЫЕ (цвета, тени, радиусы)
+   ============================================================ */
+:root {
+    /* Фоны */
+    --bg-base: #0f172a;
+    --bg-surface: #1e293b;
+    --bg-elevated: #334155;
+    --bg-hover: #475569;
+    --bg-input: rgba(15, 23, 42, 0.6);
+    /* Текст */
+    --text-primary: #ffffff;
+    --text-body: #cbd5e1;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+    --text-soft: #e2e8f0;
+    /* Акценты */
+    --accent: #10b981;
+    --accent-hover: #34d399;
+    --accent-active: #059669;
+    --accent-cyan: #06b6d4;
+    --accent-blue: #38bdf8;
+    --danger: #ef4444;
+    /* Прозрачные акценты */
+    --accent-soft: rgba(16, 185, 129, 0.1);
+    --accent-border: rgba(16, 185, 129, 0.2);
+    --accent-glow: rgba(16, 185, 129, 0.3);
+    --accent-glow-strong: rgba(16, 185, 129, 0.5);
+    --accent-focus: rgba(16, 185, 129, 0.15);
+    --danger-soft: rgba(239, 68, 68, 0.1);
+    --danger-border: rgba(239, 68, 68, 0.3);
+    --blue-soft: rgba(14, 165, 233, 0.1);
+    --blue-border: rgba(14, 165, 233, 0.2);
+    /* Границы */
+    --border-subtle: rgba(148, 163, 184, 0.1);
+    --border-default: rgba(148, 163, 184, 0.15);
+    --border-input: rgba(148, 163, 184, 0.2);
+    --border-card: rgba(51, 65, 85, 0.6);
+    --border-card-hover: #475569;
+    --border-dashed: #334155;
+    /* Тени */
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    --shadow-accent: 0 4px 14px rgba(16, 185, 129, 0.3);
+    --shadow-accent-hover: 0 6px 20px rgba(16, 185, 129, 0.5);
+    /* Градиенты */
+    --gradient-accent: linear-gradient(90deg, #10b981, #06b6d4);
+    --gradient-card: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    /* Радиусы */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-pill: 9999px;
+    /* Переходы */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+}
+
+/* ============================================================
+   2. БАЗОВЫЕ СТИЛИ / RESET
+   ============================================================ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    html {
+        font-size: 16px;
+    }
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-base);
+    color: var(--text-body);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* Bootstrap focus override */
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus,
+.form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+/* ============================================================
+   3. ШАПКА И НАВИГАЦИЯ
+   ============================================================ */
+.site-header {
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 16px 0;
+    box-shadow: var(--shadow-sm);
 }
 
-/* Основные стили страницы профиля */
+.header-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-logo {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color var(--transition-fast);
+}
+
+    .site-logo:hover {
+        color: var(--accent-hover);
+    }
+
+.site-nav {
+    display: flex;
+    gap: 24px;
+}
+
+.nav-link,
+.nav-link-logout {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+    .nav-link:hover {
+        color: var(--accent);
+    }
+
+    .nav-link-logout:hover {
+        color: var(--danger);
+    }
+
+/* ============================================================
+   4. КАРКАС СТРАНИЦЫ
+   ============================================================ */
+.main-content {
+    flex-grow: 1;
+    padding: 40px 0;
+    width: 100%;
+}
+
+.site-footer {
+    background-color: var(--bg-base);
+    border-top: 1px solid var(--border-subtle);
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-dim);
+}
+
+/* ============================================================
+   5. ОБЩИЕ ЭЛЕМЕНТЫ
+   ============================================================ */
+.section-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.author-link {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+    .author-link:hover {
+        color: var(--accent-hover);
+    }
+
+.demo-link {
+    color: var(--accent-blue);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+    .demo-link:hover {
+        text-decoration: underline;
+    }
+
+/* Пустые состояния */
+.no-posts,
+.no-projects,
+.no-data {
+    grid-column: 1 / -1;
+    background-color: rgba(30, 41, 59, 0.4);
+    border: 1px dashed var(--border-dashed);
+    border-radius: var(--radius-lg);
+    padding: 48px;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+/* ============================================================
+   6. АВАТАРКИ
+   ============================================================ */
+.avatar-wrapper {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.avatar-glow {
+    position: absolute;
+    inset: -2px;
+    background: var(--gradient-accent);
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0.4;
+    filter: blur(8px);
+    transition: opacity var(--transition-base);
+}
+
+.avatar-wrapper:hover .avatar-glow {
+    opacity: 0.7;
+}
+
+.avatar-img,
+.avatar-placeholder {
+    position: relative;
+    z-index: 2;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 4px solid var(--bg-surface);
+    box-shadow: var(--shadow-md);
+}
+
+.avatar-img {
+    object-fit: cover;
+}
+
+.avatar-placeholder {
+    background-color: var(--bg-elevated);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--text-soft);
+    user-select: none;
+}
+
+/* ============================================================
+   7. КНОПКИ
+   ============================================================ */
+.btn-auth,
+.btn-submit,
+.btn-save {
+    display: inline-block;
+    background: var(--gradient-accent);
+    color: var(--text-primary);
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow-accent);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-auth {
+    font-size: 15px;
+    padding: 12px 32px;
+    text-decoration: none;
+}
+
+.btn-submit,
+.btn-save {
+    width: 100%;
+    font-size: 15px;
+    padding: 14px;
+}
+
+    .btn-auth:hover,
+    .btn-submit:hover,
+    .btn-save:hover {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-accent-hover);
+    }
+
+.btn-auth:hover {
+    transform: translateY(-2px);
+}
+
+.btn-submit:active,
+.btn-save:active,
+.btn-auth:active {
+    transform: translateY(1px);
+}
+
+/* Вторичные кнопки */
+.btn-cancel,
+.btn-logout,
+.btn-edit-profile,
+.btn-add-project {
+    display: inline-block;
+    background-color: transparent;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.btn-cancel {
+    flex: 1;
+    color: var(--text-muted);
+    border: 1px solid var(--border-input);
+    padding: 14px;
+    font-size: 15px;
+    text-align: center;
+}
+
+    .btn-cancel:hover {
+        background-color: rgba(148, 163, 184, 0.05);
+        color: var(--text-primary);
+    }
+
+.btn-logout {
+    color: var(--danger);
+    border: 1px solid var(--danger-border);
+    padding: 8px 20px;
+    border-radius: 10px;
+}
+
+    .btn-logout:hover {
+        background-color: var(--danger-soft);
+        border-color: var(--danger);
+    }
+
+.btn-edit-profile {
+    color: var(--accent-blue);
+    border: 1px solid var(--blue-border);
+    padding: 8px 16px;
+    font-weight: 600;
+}
+
+    .btn-edit-profile:hover {
+        background-color: var(--blue-soft);
+        border-color: var(--accent-blue);
+    }
+
+.btn-add-project {
+    background-color: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+}
+
+    .btn-add-project:hover {
+        background-color: var(--accent-border);
+        border-color: var(--accent);
+    }
+
+/* Ссылка-кнопка регистрации */
+.btn-register {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 6px;
+    padding-bottom: 2px;
+    border: none;
+    border-bottom: 1px solid transparent;
+    background: none;
+    font-family: inherit;
+    cursor: pointer;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+    .btn-register:hover {
+        color: var(--accent-hover);
+        border-color: var(--accent-hover);
+    }
+
+    .btn-register:active {
+        color: var(--accent-active);
+        border-color: var(--accent-active);
+    }
+
+/* ============================================================
+   8. ФОРМЫ (общие)
+   ============================================================ */
+.form-wrapper,
+.auth-wrapper,
+.edit-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.form-wrapper {
+    min-height: 70vh;
+}
+
+.auth-wrapper {
+    min-height: 60vh;
+}
+
+.edit-wrapper {
+    min-height: 75vh;
+}
+
+.form-card,
+.auth-card,
+.edit-card {
+    background: var(--gradient-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    width: 100%;
+    box-shadow: var(--shadow-xl);
+}
+
+.form-card,
+.edit-card {
+    max-width: 550px;
+}
+
+.auth-card {
+    max-width: 420px;
+}
+
+.form-title,
+.edit-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.edit-title {
+    font-size: 26px;
+    gap: 12px;
+}
+
+.auth-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.form-subtitle,
+.edit-subtitle,
+.auth-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    font-weight: 300;
+}
+
+.auth-subtitle {
+    text-align: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.auth-card .form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-body);
+}
+
+.form-input {
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-input);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+textarea.form-input {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.5;
+}
+
+.form-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-focus);
+}
+
+.form-input::placeholder {
+    color: var(--text-dim);
+}
+
+.field-hint {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: -4px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.auth-footer {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* Кастомная зона загрузки файла */
+.file-upload-zone {
+    background-color: rgba(15, 23, 42, 0.4);
+    border: 2px dashed var(--border-input);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+    .file-upload-zone:hover {
+        border-color: var(--accent);
+        background-color: rgba(16, 185, 129, 0.02);
+    }
+
+.file-input-native {
+    color: var(--text-muted);
+    font-size: 14px;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* ============================================================
+   9. ПРОФИЛЬ
+   ============================================================ */
 .profile-container {
     max-width: 1100px;
     margin: 0 auto;
@@ -41,24 +584,23 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: #94a3b8;
+    color: var(--text-muted);
     text-decoration: none;
     font-size: 14px;
     margin-bottom: 24px;
-    transition: color 0.2s ease;
+    transition: color var(--transition-fast);
 }
 
     .back-link:hover {
-        color: #34d399;
+        color: var(--accent-hover);
     }
 
-/* Главная карточка автора */
 .profile-card {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    border: 1px solid rgba(148, 163, 184, 0.15);
-    border-radius: 24px;
+    background: var(--gradient-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
     padding: 32px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-lg);
     display: flex;
     flex-direction: row;
     gap: 32px;
@@ -66,60 +608,6 @@ body {
     margin-bottom: 48px;
 }
 
-/* Контейнер аватарки с неоновым свечением */
-.avatar-wrapper {
-    position: relative;
-    flex-shrink: 0;
-}
-
-.avatar-glow {
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(90deg, #10b981, #06b6d4);
-    border-radius: 50%;
-    z-index: 1;
-    opacity: 0.4;
-    filter: blur(8px);
-    transition: opacity 0.3s ease;
-}
-
-.avatar-wrapper:hover .avatar-glow {
-    opacity: 0.7;
-}
-
-.avatar-img {
-    position: relative;
-    z-index: 2;
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #1e293b;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-}
-
-.avatar-placeholder {
-    position: relative;
-    z-index: 2;
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    background-color: #334155;
-    border: 4px solid #1e293b;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 56px;
-    font-weight: 700;
-    color: #e2e8f0;
-    user-select: none;
-}
-
-/* Текстовая информация профиля */
 .profile-info {
     flex-grow: 1;
 }
@@ -134,29 +622,29 @@ body {
 .profile-name {
     font-size: 30px;
     font-weight: 800;
-    color: #ffffff;
+    color: var(--text-primary);
     margin: 0;
 }
 
 .profile-badge {
     display: inline-block;
     padding: 4px 12px;
-    border-radius: 9999px;
+    border-radius: var(--radius-pill);
     font-size: 12px;
     font-weight: 600;
-    background-color: rgba(16, 185, 129, 0.1);
-    color: #10b981;
-    border: 1px solid rgba(16, 185, 129, 0.2);
+    background-color: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
 }
 
 .profile-username {
-    color: #94a3b8;
+    color: var(--text-muted);
     font-size: 14px;
     margin: 4px 0 16px 0;
 }
 
 .profile-bio {
-    color: #cbd5e1;
+    color: var(--text-body);
     font-size: 16px;
     font-weight: 300;
     line-height: 1.6;
@@ -165,7 +653,6 @@ body {
     white-space: pre-line;
 }
 
-/* Блоки ссылок и тегов */
 .profile-badges-row {
     display: flex;
     gap: 12px;
@@ -176,19 +663,19 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background-color: rgba(14, 165, 233, 0.1);
-    color: #38bdf8;
-    border: 1px solid rgba(14, 165, 233, 0.2);
+    background-color: var(--blue-soft);
+    color: var(--accent-blue);
+    border: 1px solid var(--blue-border);
     padding: 8px 16px;
-    border-radius: 12px;
+    border-radius: var(--radius-md);
     font-size: 14px;
     font-weight: 500;
     text-decoration: none;
-    transition: background-color 0.2s ease;
+    transition: background-color var(--transition-fast);
 }
 
     .tg-link:hover {
-        background-color: rgba(14, 165, 233, 0.2);
+        background-color: var(--blue-border);
     }
 
 .stats-badge {
@@ -196,186 +683,333 @@ body {
     align-items: center;
     gap: 8px;
     background-color: rgba(51, 65, 85, 0.4);
-    color: #cbd5e1;
-    border: 1px solid #334155;
+    color: var(--text-body);
+    border: 1px solid var(--bg-elevated);
     padding: 8px 16px;
-    border-radius: 12px;
+    border-radius: var(--radius-md);
     font-size: 14px;
     font-weight: 500;
 }
 
-/* Сетка постов */
-.section-title {
-    font-size: 24px;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.posts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 24px;
-}
-
-.no-posts {
-    grid-column: 1 / -1;
-    background-color: rgba(30, 41, 59, 0.4);
-    border: 1px dashed #334155;
-    border-radius: 16px;
-    padding: 48px;
-    text-align: center;
-    color: #94a3b8;
-}
-
-.post-card {
-    background-color: rgba(30, 41, 59, 0.8);
-    border: 1px solid rgba(51, 65, 85, 0.6);
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-/*    justify-content: space-between;
-*/    transition: transform 0.3s ease, border-color 0.3s ease;
-    min-height: 200px;
-}
-
-    .post-card:hover {
-        transform: translateY(-4px);
-        border-color: #475569;
-    }
-
-.post-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0 0 12px 0;
-    transition: color 0.2s ease;
-}
-
-.post-card:hover .post-title {
-    color: #10b981;
-}
-
-.post-desc {
-    color: #94a3b8;
-    font-size: 14px;
-    line-height: 1.5;
-    font-weight: 300;
-    margin-bottom: 24px;
-    white-space: pre-line;
-    /* display: -webkit-box;
-        -webkit-line-clamp: none;
-        -webkit-box-orient: vertical; */
-    overflow: hidden;
-}
-
-.post-footer {
-    margin-top: auto;
-    padding-top: 16px;
-    border-t: 1px solid rgba(51, 65, 85, 0.5);
+/* ============================================================
+   10. СЕТКИ КАРТОЧЕК (посты / проекты / участники)
+   ============================================================ */
+.posts-header,
+.projects-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 12px;
-    color: #64748b;
-}
-
-/* Сетка проектов */
-.section-title {
-    font-size: 24px;
-    font-weight: 700;
-    color: #ffffff;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 16px;
     margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
 }
 
+.posts-grid,
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 24px;
 }
 
-.no-projects {
-    grid-column: 1 / -1;
-    background-color: rgba(30, 41, 59, 0.4);
-    border: 1px dashed #334155;
-    border-radius: 16px;
-    padding: 48px;
-    text-align: center;
-    color: #94a3b8;
-}
+/* Если нужна широкая сетка постов — раскомментируйте: */
+/* .posts-grid { grid-template-columns: repeat(auto-fill, minmax(520px, 1fr)); } */
 
-.project-card {
+.post-card,
+.project-card,
+.user-card {
     background-color: rgba(30, 41, 59, 0.8);
-    border: 1px solid rgba(51, 65, 85, 0.6);
-    border-radius: 16px;
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-lg);
     padding: 24px;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform var(--transition-base), border-color var(--transition-base);
 }
 
-    .project-card:hover {
+.post-card,
+.project-card {
+    justify-content: space-between;
+}
+
+.post-card {
+    min-height: 200px;
+}
+    /* Если нужны высокие посты — замените выше на: min-height: 400px; */
+
+    .post-card:hover,
+    .project-card:hover,
+    .user-card:hover {
         transform: translateY(-4px);
-        border-color: #475569;
+        border-color: var(--border-card-hover);
     }
 
+.post-title,
 .project-title {
     font-size: 18px;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--text-primary);
     margin: 0 0 12px 0;
-    transition: color 0.2s ease;
+    transition: color var(--transition-fast);
 }
 
-.project-card:hover .project-title {
-    color: #10b981;
+.project-title {
+    margin-bottom: 8px;
 }
 
+.post-card:hover .post-title,
+.project-card:hover .post-title {
+    color: var(--accent);
+}
+
+.post-desc,
 .project-desc {
-    color: #94a3b8;
+    color: var(--text-muted);
     font-size: 14px;
     line-height: 1.5;
     font-weight: 300;
     margin-bottom: 24px;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
+    white-space: pre-line;
     overflow: hidden;
 }
 
+.project-desc {
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.post-footer,
 .project-footer {
     margin-top: auto;
     padding-top: 16px;
-    border-t: 1px solid rgba(51, 65, 85, 0.5);
+    border-top: 1px solid rgba(51, 65, 85, 0.5);
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 12px;
-    color: #64748b;
+    color: var(--text-dim);
 }
 
-.demo-link {
-    color: #10b981;
+.project-footer {
+    font-size: 13px;
+    padding-top: 14px;
+}
+
+/* ============================================================
+   11. ГЛАВНАЯ СТРАНИЦА (hero)
+   ============================================================ */
+.hero-section {
+    text-align: center;
+    margin-bottom: 48px;
+    padding: 24px 0;
+}
+
+.hero-title {
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+}
+
+.hero-subtitle {
+    color: var(--text-muted);
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 24px;
+}
+
+.welcome-user-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.welcome-text {
+    font-size: 18px;
+    color: var(--text-soft);
     font-weight: 500;
-    text-decoration: none;
 }
 
-    .demo-link:hover {
-        text-decoration: underline;
+.welcome-name {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/* ============================================================
+   12. КАРТОЧКИ УЧАСТНИКОВ
+   ============================================================ */
+.projects-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.user-card {
+    border-radius: var(--radius-xl);
+    padding: 32px 24px;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    border-color: var(--border-subtle);
+}
+
+    .user-card .avatar-wrapper {
+        margin-bottom: 20px;
     }
 
-/* Адаптивность для мобильных устройств */
-@@media (max-width: 768px) {
+    .user-card .avatar-glow {
+        opacity: 0.3;
+        filter: blur(6px);
+    }
+
+    .user-card:hover .avatar-glow {
+        opacity: 0.6;
+    }
+
+    .user-card .avatar-img,
+    .user-card .avatar-placeholder {
+        width: 110px;
+        height: 110px;
+        border: 3px solid var(--bg-surface);
+    }
+
+    .user-card .avatar-placeholder {
+        font-size: 38px;
+    }
+
+.user-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    transition: color var(--transition-fast);
+}
+
+.user-card:hover .user-name {
+    color: var(--accent);
+}
+
+.user-username {
+    color: var(--text-dim);
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.user-bio {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 300;
+    border-top: 1px solid rgba(51, 65, 85, 0.4);
+    padding-top: 16px;
+    width: 100%;
+    white-space: pre-line;
+}
+
+/* ============================================================
+   13. КОНТЕНТ ПОСТА (markdown)
+   ============================================================ */
+.post-content img {
+    max-width: 100%;
+    height: 200px;
+    border-radius: var(--radius-sm);
+    margin: 16px 0;
+    display: block;
+}
+
+.post-content blockquote {
+    border-left: 4px solid var(--accent);
+    padding-left: 16px;
+    color: var(--text-muted);
+    margin: 16px 0;
+}
+
+.post-content pre {
+    background: var(--bg-base);
+    padding: 16px;
+    border-radius: var(--radius-sm);
+    overflow-x: auto;
+}
+
+.comments-area {
+    display: grid;
+    gap: 24px;
+}
+
+/* ============================================================
+   14. EASYMDE (тёмная тема редактора)
+   ============================================================ */
+.EasyMDEContainer .CodeMirror {
+    background-color: var(--bg-base);
+    color: var(--text-body);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-sm);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+}
+
+.EasyMDEContainer .editor-toolbar {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-card);
+    border-bottom: none;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    opacity: 1;
+}
+
+    .EasyMDEContainer .editor-toolbar button {
+        color: var(--text-muted) !important;
+    }
+
+        .EasyMDEContainer .editor-toolbar button:hover {
+            background-color: var(--bg-elevated);
+            color: var(--accent) !important;
+        }
+
+.EasyMDEContainer .editor-statusbar {
+    color: var(--text-dim);
+    background-color: var(--bg-surface);
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+}
+
+.EasyMDEContainer .CodeMirror-cursor {
+    border-left: 2px solid var(--accent);
+}
+
+.EasyMDEContainer .CodeMirror-selected {
+    background-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+.EasyMDEContainer .CodeMirror-focused .CodeMirror-selected {
+    background-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+.EasyMDEContainer .CodeMirror-line::selection,
+.EasyMDEContainer .CodeMirror-line > span::selection,
+.EasyMDEContainer .CodeMirror-line > span > span::selection {
+    background: rgba(16, 185, 129, 0.3);
+}
+
+/* ============================================================
+   15. АДАПТИВНОСТЬ
+   ============================================================ */
+@media (max-width: 600px) {
+    .header-container {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+
+    .site-nav {
+        gap: 16px;
+    }
+}
+
+@media (max-width: 768px) {
     .profile-card {
         flex-direction: column;
         align-items: center;
@@ -383,254 +1017,13 @@ body {
         padding: 24px;
     }
 
-    .profile-header-row {
-        justify-content: center;
-    }
-
+    .profile-header-row,
     .profile-badges-row {
         justify-content: center;
     }
-}
-/* Добавим один новый стиль для кнопки редактирования */
-.btn-edit-profile {
-    background-color: transparent;
-    color: #38bdf8;
-    border: 1px solid rgba(14, 165, 233, 0.3);
-    padding: 8px 16px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background-color 0.2s;
-    cursor: pointer;
-}
 
-    .btn-edit-profile:hover {
-        background-color: rgba(14, 165, 233, 0.1);
-        border-color: #38bdf8;
+    .posts-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
     }
-
-.vertical-line {
-    background-color: rgba(30, 41, 59, 0.8);
-    border: 1px solid rgba(14, 165, 233, 0.3);
-    height: 5px;
-    margin: 10px;
-}
-
-/* Центрирование и ограничение ширины формы */
-.form-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 70vh;
-    padding: 20px;
-}
-
-/* Стеклянная карточка формы */
-.form-card {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    border: 1px solid rgba(148, 163, 184, 0.15);
-    border-radius: 24px;
-    padding: 40px;
-    width: 100%;
-    max-width: 550px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-}
-
-.form-title {
-    font-size: 28px;
-    font-weight: 800;
-    color: #ffffff;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.form-subtitle {
-    font-size: 14px;
-    color: #94a3b8;
-    margin-bottom: 32px;
-    font-weight: 300;
-}
-
-/* Группы полей ввода */
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 24px;
-}
-
-.form-label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #cbd5e1;
-}
-
-.form-input {
-    background-color: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(148, 163, 184, 0.2);
-    border-radius: 12px;
-    padding: 12px 16px;
-    color: #ffffff;
-    font-family: inherit;
-    font-size: 15px;
-    outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* Специфичный стиль для большого текстового поля описания */
-textarea.form-input {
-    resize: vertical;
-    min-height: 120px;
-    line-height: 1.5;
-}
-
-.form-input:focus {
-    border-color: #10b981;
-    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
-}
-
-/* Ссылка на демо/гитхаб — делаем подсказку тусклой */
-.field-hint {
-    font-size: 12px;
-    color: #64748b;
-    margin-top: -4px;
-}
-
-/* Блок кнопок внизу формы */
-.form-actions {
-    display: flex;
-    gap: 16px;
-    margin-top: 32px;
-}
-
-.btn-cancel {
-    flex: 1;
-    background-color: transparent;
-    color: #94a3b8;
-    border: 1px solid rgba(148, 163, 184, 0.2);
-    border-radius: 12px;
-    padding: 14px;
-    font-size: 15px;
-    font-weight: 500;
-    text-align: center;
-    text-decoration: none;
-    transition: background-color 0.2s, color 0.2s;
-}
-
-    .btn-cancel:hover {
-        background-color: rgba(148, 163, 184, 0.05);
-        color: #ffffff;
-    }
-
-.btn-submit {
-    flex: 2;
-    background: linear-gradient(90deg, #10b981, #06b6d4);
-    color: #ffffff;
-    border: none;
-    border-radius: 12px;
-    padding: 14px;
-    font-size: 15px;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-    .btn-submit:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
-    }
-
-    .btn-submit:active {
-        transform: translateY(1px);
-    }
-
-.comments-area {
-    display: grid;
-    gap: 24px;
-}
-
-.post-content img {
-    max-width: 100%;
-    height: 200px;
-    border-radius: 8px;
-    margin: 16px 0;
-    display: block;
-}
-
-/* Стили для цитат и кода, чтобы выглядело красиво */
-.post-content blockquote {
-    border-left: 4px solid #10b981;
-    padding-left: 16px;
-    color: #94a3b8;
-    margin: 16px 0;
-}
-
-.post-content pre {
-    background: #0f172a;
-    padding: 16px;
-    border-radius: 8px;
-    overflow-x: auto;
-}
-
-/* Переопределяем стили EasyMDE под наш дизайн */
-.EasyMDEContainer .CodeMirror {
-    background-color: #0f172a; /* Твой темный фон */
-    color: #cbd5e1; /* Твой цвет текста */
-    border: 1px solid rgba(51, 65, 85, 0.6); /* Рамка как у карточек */
-    border-radius: 8px;
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-}
-
-/* Панель инструментов */
-.EasyMDEContainer .editor-toolbar {
-    background-color: #1e293b;
-    border: 1px solid rgba(51, 65, 85, 0.6);
-    border-bottom: none;
-    border-radius: 8px 8px 0 0;
-    opacity: 1; /* Убираем прозрачность */
-}
-
-    /* Иконки на панели (чтобы были светлыми) */
-    .EasyMDEContainer .editor-toolbar button {
-        color: #94a3b8 !important;
-    }
-
-        .EasyMDEContainer .editor-toolbar button:hover {
-            background-color: #334155;
-            color: #10b981 !important;
-        }
-
-/* Статус-бар внизу */
-.EasyMDEContainer .editor-statusbar {
-    color: #64748b;
-    background-color: #1e293b;
-    border-radius: 0 0 8px 8px;
-}
-
-/* Цвет курсора в EasyMDE */
-.EasyMDEContainer .CodeMirror-cursor {
-    border-left: 2px solid #10b981; /* Твой неоново-зелёный акцент */
-}
-
-/* Цвет выделения текста в EasyMDE */
-.EasyMDEContainer .CodeMirror-selected {
-    background-color: rgba(16, 185, 129, 0.3) !important; /* Неоново-зеленый с прозрачностью */
-}
-
-/* Цвет выделения, когда редактор не в фокусе (чтобы не сливалось) */
-.EasyMDEContainer .CodeMirror-focused .CodeMirror-selected {
-    background-color: rgba(16, 185, 129, 0.4) !important;
-}
-
-/* Иногда CodeMirror использует этот класс для выделения в некоторых темах */
-.EasyMDEContainer .CodeMirror-line::selection,
-.EasyMDEContainer .CodeMirror-line > span::selection,
-.EasyMDEContainer .CodeMirror-line > span > span::selection {
-    background: rgba(16, 185, 129, 0.3);
 }
