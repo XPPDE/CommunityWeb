@@ -96,56 +96,56 @@ body {
     max-width: 100vw;
 }
 
-/* --- СВЕТЛАЯ ТЕМА --- */
-body.light-theme {
-    /* Фоны */
-    --bg-base: #f8fafc;
-    --bg-surface: #ffffff;
-    --bg-elevated: #f1f5f9;
-    --bg-hover: #e2e8f0;
-    --bg-input: #ffffff;
-    --bg-card: #ffffff; /* Белые карточки */
-    --bg-empty: #f8fafc;
-    /* Текст */
-    --text-primary: #0f172a;
-    --text-body: #334155;
-    --text-muted: #64748b;
-    --text-dim: #94a3b8;
-    --text-soft: #1e293b;
-    /* Акценты */
-    --accent: #10b981;
-    --accent-hover: #059669;
-    --accent-active: #047857;
-    --accent-cyan: #0891b2;
-    --accent-blue: #0284c7;
-    --danger: #dc2626;
-    /* Прозрачные акценты */
-    --accent-soft: rgba(16, 185, 129, 0.1);
-    --accent-border: rgba(16, 185, 129, 0.3);
-    --accent-glow: rgba(16, 185, 129, 0.2);
-    --accent-glow-strong: rgba(16, 185, 129, 0.4);
-    --accent-focus: rgba(16, 185, 129, 0.25);
-    --danger-soft: rgba(220, 38, 38, 0.1);
-    --danger-border: rgba(220, 38, 38, 0.3);
-    --blue-soft: rgba(2, 132, 199, 0.1);
-    --blue-border: rgba(2, 132, 199, 0.3);
-    /* Границы */
-    --border-subtle: rgba(15, 23, 42, 0.08);
-    --border-default: rgba(15, 23, 42, 0.12);
-    --border-input: rgba(15, 23, 42, 0.15);
-    --border-card: rgba(15, 23, 42, 0.1);
-    --border-card-hover: rgba(15, 23, 42, 0.25);
-    --border-dashed: #cbd5e1;
-    --border-footer: rgba(15, 23, 42, 0.1);
-    /* Тени (мягкие для светлой темы) */
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
-    /* Градиенты */
-    --gradient-card: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    --gradient-profile: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-}
+    /* --- СВЕТЛАЯ ТЕМА --- */
+    body.light-theme {
+        /* Фоны: делаем фон сайта серым, а карточки белыми */
+        --bg-base: #f1f5f9; /* Серый фон */
+        --bg-surface: #ffffff; /* Белая шапка */
+        --bg-elevated: #f8fafc;
+        --bg-hover: #e2e8f0;
+        --bg-input: #ffffff;
+        --bg-card: #ffffff; /* Белые карточки */
+        --bg-empty: #f8fafc;
+        /* Текст */
+        --text-primary: #0f172a;
+        --text-body: #1e293b; /* Более контрастный текст */
+        --text-muted: #475569;
+        --text-dim: #64748b;
+        --text-soft: #0f172a;
+        /* Акценты */
+        --accent: #10b981;
+        --accent-hover: #059669;
+        --accent-active: #047857;
+        --accent-cyan: #0891b2;
+        --accent-blue: #0284c7;
+        --danger: #dc2626;
+        /* Прозрачные акценты */
+        --accent-soft: rgba(16, 185, 129, 0.1);
+        --accent-border: rgba(16, 185, 129, 0.3);
+        --accent-glow: rgba(16, 185, 129, 0.2);
+        --accent-glow-strong: rgba(16, 185, 129, 0.4);
+        --accent-focus: rgba(16, 185, 129, 0.25);
+        --danger-soft: rgba(220, 38, 38, 0.1);
+        --danger-border: rgba(220, 38, 38, 0.3);
+        --blue-soft: rgba(2, 132, 199, 0.1);
+        --blue-border: rgba(2, 132, 199, 0.3);
+        /* Границы */
+        --border-subtle: rgba(15, 23, 42, 0.08);
+        --border-default: rgba(15, 23, 42, 0.12);
+        --border-input: rgba(15, 23, 42, 0.15);
+        --border-card: rgba(15, 23, 42, 0.06); /* Очень нежная граница */
+        --border-card-hover: rgba(15, 23, 42, 0.15);
+        --border-dashed: #cbd5e1;
+        --border-footer: rgba(15, 23, 42, 0.08);
+        /* Тени: более выраженные для светлой темы */
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        /* Градиенты */
+        --gradient-card: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        --gradient-profile: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    }
 
 /* Bootstrap focus override */
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus,
