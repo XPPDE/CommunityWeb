@@ -60,21 +60,30 @@
     </div>
 </div>
 
-<div class="post-card">
-    <h3 class="post-title"> Поделитесь своими мыслями с ребятами из коммьюнити</h3>
 
-    <form method="post">
+@if (User.Identity is { IsAuthenticated: true })
+{
+    <div class="post-card">
+        <h3 class="post-title"> Поделитесь своими мыслями с ребятами из коммьюнити</h3>
 
-        <!-- текст комментария -->
-        <div class="form-group">
-            <textarea maxlength="3000" asp-for="NewComment.Content" class="form-input" placeholder="Расскажите что-нибудь" required></textarea>
-        </div>
+        <form method="post">
 
-        <!-- Кнопки управления -->
-        <div class="form-actions">
-            <button type="submit" class="btn-submit">Опубликовать комментарий</button>
-        </div>
+            <!-- текст комментария -->
+            <div class="form-group">
+                <textarea maxlength="3000" asp-for="NewComment.Content" class="form-input" placeholder="Расскажите что-нибудь" required></textarea>
+            </div>
 
-    </form>
-</div>
+            <!-- Кнопки управления -->
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">Опубликовать комментарий</button>
+            </div>
 
+        </form>
+    </div>
+}
+else
+{
+    <div class="profile-card">
+        <a asp-page="/Autorization" style="text-decoration: none;" class="btn-submit">Войти в аккаунт</a>
+    </div>
+}
