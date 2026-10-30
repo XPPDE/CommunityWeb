@@ -12,7 +12,7 @@ namespace CommunityWeb.Pages
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            var post = await context.Posts.FirstOrDefaultAsync(p => p.Id == id);
+            var post = await context.Posts.FindAsync(id);
 
             if (post == null)
                 return NotFound();
@@ -28,16 +28,17 @@ namespace CommunityWeb.Pages
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            if (!ModelState.IsValid) return Page();
 
-            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            var existingPost = await context.Posts.FindAsync(id);
 
-            context.Posts.Update(Post);
+            if (existingPost == null) return NotFound();
+
+            existingPost.Title = Post.Title;
+            existingPost.Content = Post.Content;
+
             await context.SaveChangesAsync();
 
             return RedirectToPage("/Index");
