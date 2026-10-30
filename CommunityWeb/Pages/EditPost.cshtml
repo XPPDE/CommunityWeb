@@ -1,0 +1,57 @@
+﻿@page "{id:int}"
+@model CommunityWeb.Pages.EditPostModel
+
+@{
+    ViewData["Title"] = "Редактировать пост";
+}
+
+<div class="form-wrapper">
+    <div class="form-card">
+        <h1 class="form-title"><span>🚀</span> Редактировать пост</h1>
+        <p class="form-subtitle">Поделитесь своими мыслями с ребятами из коммьюнити</p>
+
+        <form method="post">
+            
+            <!-- Название проекта -->
+            <div class="form-group">
+                <label class="form-label" asp-for="Post.Title">Заголовок поста</label>
+                <input asp-for="Post.Title" class="form-input" placeholder="Например: Сегодня я съел Сеппочку🌸" required />
+            </div>
+
+            <!-- Описание проекта -->
+            <div class="form-group">
+                <label class="form-label" asp-for="Post.Content">Описание</label>
+                <textarea maxlength="3000" id="post-editor" asp-for="Post.Content" class="form-input" placeholder="Расскажите что-нибудь"></textarea>
+            </div>
+
+            <!-- Кнопки управления -->
+            <div class="form-actions">
+                <a asp-page="/Profile" asp-route-id="@Model.Post.Id" class="btn-cancel">Отмена</a>
+                <button type="submit" class="btn-submit">Сохранить изменения</button>
+            </div>
+
+        </form>
+
+        @section Scripts {
+            <script>
+                const easyMDE = new EasyMDE({
+                    element: document.getElementById('post-editor'),
+                    spellChecker: false,
+                    theme: "dark", // <--- ВОТ ЭТА СТРОКА
+
+                    placeholder: "Напишите что-нибудь... Вставьте ссылку на картинку, и она появится в предпросмотре.",
+
+
+                    // Настраиваем панель инструментов (опционально)
+                            toolbar: [
+                            "bold", "italic", "strikethrough", "heading-1", "heading-2", "heading-3", "|",
+                            "quote", "unordered-list", "ordered-list", "check-list", "|",
+                            "link", "image", "table", "horizontal-rule", "code", "|",
+                            "preview", "side-by-side", "fullscreen", "|",
+                            "clean-block", "undo", "redo", "guide"
+                        ]
+                });
+            </script>
+        }
+    </div>
+</div>

@@ -14,8 +14,8 @@
                 @if (Model.IsOwner)
                 {
                     <div style="display: flex; gap: 8px;">
-                        @* <a href="#" style="text-decoration: none; font-size: 14px;">⚙️</a>
-                                            <a href="#" style="text-decoration: none; font-size: 14px;">❌</a> *@
+                         <a asp-page="/EditPost" asp-route-id="@Model.Post.Id" style="text-decoration: none; font-size: 14px;">⚙️</a>
+					@* <a href="#" style="text-decoration: none; font-size: 14px;">❌</a> *@
                     </div>
                 }
             </div>

@@ -29,7 +29,7 @@ namespace CommunityWeb.Pages
 
             post.Content = Markdown.ToHtml(post.Content, pipeline);
 
-            Post= post;
+            Post = post;
 
             var currentUserIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (currentUserIdClaim != null)
