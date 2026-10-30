@@ -17,6 +17,12 @@ namespace CommunityWeb.Pages
             if (post == null)
                 return NotFound();
 
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            if (int.Parse(userIdClaim.Value) != post.AuthorId)
+            {
+                return Forbid();
+            }
+
             Post = post;
 
             return Page();
