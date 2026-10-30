@@ -28,8 +28,6 @@ namespace CommunityWeb.Pages
                 NewPost.AuthorId = int.Parse(userIdClaim.Value);
             }
 
-            NewPost.CreatedAt = DateTime.UtcNow;
-
             context.Posts.Add(NewPost);
             await context.SaveChangesAsync();
 

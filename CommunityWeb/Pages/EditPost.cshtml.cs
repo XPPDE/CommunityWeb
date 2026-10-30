@@ -36,17 +36,11 @@ namespace CommunityWeb.Pages
             }
 
             var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-            if (userIdClaim != null)
-            {
-                Post.AuthorId = int.Parse(userIdClaim.Value);
-            }
-
-            Post.CreatedAt = DateTime.UtcNow;
 
             context.Posts.Update(Post);
             await context.SaveChangesAsync();
 
-            return RedirectToPage("/Profile", userIdClaim);
+            return RedirectToPage("/Index");
         }
     }
 }
