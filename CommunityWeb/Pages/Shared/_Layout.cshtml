@@ -34,6 +34,8 @@
                 {
                     <a asp-page="/Autorization" class="nav-link">Войти</a>
                 }
+                <button id="theme-toggle" class="nav-link" style="background: none; border: none; cursor: pointer;" title="Сменить тему"/>
+                    🌓
             </nav>
         </div>
     </header>
@@ -55,6 +57,32 @@
     
     @await RenderSectionAsync("Scripts", required: false)
 
+    <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const toggleBtn = document.getElementById('theme-toggle');
+                const body = document.body;
+
+                // 1. Вспоминаем тему при загрузке страницы
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'light') {
+                    body.classList.add('light-theme');
+                }
+
+                // 2. Обработчик клика
+                if (toggleBtn) {
+                    toggleBtn.addEventListener('click', function () {
+                        body.classList.toggle('light-theme');
+
+                        // 3. Сохраняем выбор
+                        if (body.classList.contains('light-theme')) {
+                            localStorage.setItem('theme', 'light');
+                        } else {
+                            localStorage.setItem('theme', 'dark');
+                        }
+                    });
+                }
+            });
+    </script>
 
 </body>
 </html>
