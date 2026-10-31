@@ -771,7 +771,7 @@ textarea.form-input {
 .posts-grid,
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
     gap: 24px;
     width: 100%;
 }
@@ -814,10 +814,6 @@ textarea.form-input {
     word-break: break-word;
 }
 
-.project-title {
-    margin-bottom: 8px;
-}
-
 .post-card:hover .post-title,
 .project-card:hover .project-title {
     color: var(--accent);
@@ -835,10 +831,6 @@ textarea.form-input {
     word-wrap: break-word;
     overflow-wrap: break-word;
     word-break: break-word;
-}
-
-.project-desc {
-    margin-bottom: 20px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -856,11 +848,6 @@ textarea.form-input {
     color: var(--text-dim);
     flex-wrap: wrap;
     gap: 8px;
-}
-
-.project-footer {
-    font-size: 13px;
-    padding-top: 14px;
 }
 
 /* ============================================================

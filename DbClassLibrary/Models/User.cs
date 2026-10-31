@@ -22,7 +22,7 @@ public partial class User
     [StringLength(1000)]
     public string? AvatarUrl { get; set; }
 
-    [StringLength(300)]
+    [StringLength(3000)]
     public string? Bio { get; set; }
 
     [StringLength(50)]

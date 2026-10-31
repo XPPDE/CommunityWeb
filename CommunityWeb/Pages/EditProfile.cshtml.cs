@@ -2,6 +2,7 @@ using DbClassLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 
 namespace CommunityWeb.Pages
@@ -36,7 +37,34 @@ namespace CommunityWeb.Pages
         // Срабатывает при нажатии кнопки "Сохранить изменения"
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid) return Page();
+            if (!string.IsNullOrEmpty(InputModel.Bio))
+            {
+                // Убираем \r (возврат каретки), оставляя только \n
+                InputModel.Bio = InputModel.Bio.Replace("\r\n", "\n");
+
+                // Убираем лишние пробелы в начале и в конце
+                InputModel.Bio = InputModel.Bio.Trim();
+            }
+
+            ModelState.Remove("InputModel.Bio");
+
+            if (!TryValidateModel(InputModel, nameof(InputModel)))
+            {
+                return Page(); 
+            }
+
+            if (!ModelState.IsValid)
+            {
+                foreach (var key in ModelState.Keys)
+                {
+                    var errors = ModelState[key].Errors;
+                    foreach (var error in errors)
+                    {
+                        Console.WriteLine($"Ошибка в поле {key}: {error.ErrorMessage}");
+                    }
+                }
+                return Page();
+            }
 
             // 1. Снова получаем ID юзера из сессии куки
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
@@ -49,7 +77,7 @@ namespace CommunityWeb.Pages
             if (userInDb == null) return NotFound();
 
 
-            // 4. Обновляем текстовые поля профиля
+            // 4. Обновляем тек стовые поля профиля
             userInDb.Bio = InputModel.Bio;
             userInDb.TelegramChannel = InputModel.TelegramChannel;
             userInDb.AvatarUrl = InputModel.AvatarUrl;
@@ -65,6 +93,7 @@ namespace CommunityWeb.Pages
 
     public class EditInputModel
     {
+        [StringLength(3000, ErrorMessage = "Описание должно быть от 0 до 3000 символов")]
         public string? Bio { get; set; }
         public string? TelegramChannel { get; set; }
         public string? AvatarUrl { get; set; }
